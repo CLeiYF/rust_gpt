@@ -15,7 +15,22 @@ fn main() {
         println!("me:");
 
         let mut input = String::new();
-        io::stdin().read_line(&mut input).expect("无法读取行");
+        if let Err(e) = io::stdin().read_line(&mut input) {
+            println!("无法读取行: {}", e);
+            println!("******************************************");
+            continue;
+        };
+
+        // 识别 Ctrl + D
+        if input.as_bytes().len() == 0 {
+            break;
+        }
+
+        // 空内容返回
+        if input.trim().is_empty() {
+            println!("******************************************");
+            continue;
+        }
 
         let mut auth_url = big_mod.get_auth_url();
         auth_url = auth_url.replace("http", "ws").replace("https", "wss");
@@ -31,7 +46,7 @@ fn main() {
             .unwrap();
 
         print_message_from_socket(socket);
-        println!("******************************************\n");
+        println!("\n******************************************");
     }
 }
 
