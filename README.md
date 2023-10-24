@@ -1,6 +1,6 @@
-# SparkGpt
+# RustGpt
 
-简单的讯飞烽火gpt，用于终端对话。
+简单的讯飞烽火gpt，用于终端对话。(暂时只接入了讯飞烽火)
 
 ## Quik Start
 
